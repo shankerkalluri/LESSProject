@@ -1,0 +1,153 @@
+//variables
+
+@background-color:#f4f4f4;
+@font-family: Tahoma;
+@primary-color:#3b5998;
+@secondary-color:#20B2AA;
+@line-height:1em + 1em;
+
+//Text Color Mixin
+
+.text-color(@a) when (lightness(@a) >= 50%){
+    color:black;
+}
+
+.text-color(@a) when (lightness(@a) < 50%){
+    color:white;
+}
+
+body{
+    font-family: @font-family;
+    background: @background-color;
+    line-height: @line-height;
+}
+
+
+.primary-text{
+    color:@primary-color;
+}
+
+.btn{
+    padding:10px 15px;
+    border:0;
+    .border-radius(30px);
+}
+
+.primary-btn:extend(.btn){
+    background: @primary-color;
+    .text-color(@primary-color);
+}
+
+//Nested styles
+ul#menu{
+    list-style: none;
+    background-color: lighten(@secondary-color, 50%); //functions
+    li{
+        padding:10px 0;
+        a{
+            color:@secondary-color;
+            text-decoration: none;
+            &:hover{
+                color:#000;
+            }
+        }
+    }
+}
+
+//mixins
+h1, h3{
+    .bordered
+}
+
+//mixins
+
+.bordered{
+    border-top:dotted 1px #000;
+    border-bottom: solid 2px #000;
+}
+
+//mixins with parameters
+.border-radius(@radius){
+    border-radius:@radius;
+}
+
+//mixins from other site
+
+.pannel{
+    border:2px solid dodgerblue;
+    background: lightgreen;
+    margin:10px;
+    }
+
+.little-pannel{
+    .pannel;
+    font-size:  12px;
+    padding: 5px;
+}
+
+.big-pannel{
+    .pannel;
+    font-size:  12px;
+    padding: 20px;
+}
+
+//Nested Rules from other site
+
+#side-nav{
+    
+    background: #333;
+    a:link, a:visited{
+        color: white;
+        display:block;
+        padding: 8px;
+            
+    }
+    
+    a:hover{
+        background: #777;
+    }
+}
+
+//Nested from other site
+
+#welcome-banner{
+    font-size: 32px;
+    background: lightgreen;
+    
+    /*Only on small screen deviced*/
+    
+    @media screen{
+        @media (max-width:768px){
+            font-size: 18px;
+            background: lightsteelblue;
+        }
+    }
+}
+
+//Simple Operations
+@buttonBackground: #006699;
+@buttonColor: #FFF;
+@buttonPadding: 5px;
+
+.button{
+    background: @buttonBackground;
+    color:@buttonColor;
+    padding: @buttonPadding;
+    display:inline-block;
+    border-radius: 4px;
+}
+
+.jumbo-button{
+    .button;
+    padding: @buttonPadding + 30;
+}
+
+.light-button{
+    .button;
+    background: @buttonBackground * 1.8;
+}
+
+//import
+
+@import "buttons";
+@import "forms";
